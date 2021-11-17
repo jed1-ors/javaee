@@ -11,17 +11,17 @@ import jakarta.ws.rs.core.Response;
 
 import static jakarta.ws.rs.core.Response.ok;
 
-@Path("greeting")
+@Path("student")
+@Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
-public class GreetingResource {
+public class StudentController {
 
     @Inject
-    private GreetingService greetingService;
+    private StudentService studentService;
 
     @GET
     @Path("{name}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response greeting(@PathParam("name") String name) {
-        return ok(this.greetingService.buildGreetingMessage(name)).build();
+        return ok(this.studentService.buildGreetingMessage(name)).build();
     }
 }

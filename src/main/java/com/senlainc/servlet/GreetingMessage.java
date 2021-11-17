@@ -1,8 +1,12 @@
 package com.senlainc.servlet;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+@Getter
+@Setter
 public class GreetingMessage implements Serializable {
     private String message;
 
@@ -10,13 +14,5 @@ public class GreetingMessage implements Serializable {
         final var message = new GreetingMessage();
         message.setMessage(s);
         return message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }
