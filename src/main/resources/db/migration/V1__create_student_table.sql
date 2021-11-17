@@ -1,7 +1,7 @@
 create table student (
     id bigserial primary key,
-    firstName varchar not null,
-    lastName varchar not null,
-    middleName varchar not null,
+    first_name varchar not null,
+    last_name varchar not null,
+    middle_name varchar not null,
     birthday date not null
 );
