@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.senlainc</groupId>
-    <artifactId>jee-pdp</artifactId>
+    <artifactId>javaee</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
@@ -29,76 +29,11 @@
 
         <jakartaee-api.version>9.1.0</jakartaee-api.version>
 
-        <arquillian-bom.version>1.7.0.Alpha10</arquillian-bom.version>
-
-        <mockito.version>4.0.0</mockito.version>
-        <json-path.version>2.6.0</json-path.version>
-        <awaitility.version>4.1.1</awaitility.version>
-        <hamcrest.version>2.2</hamcrest.version>
-        <jsonassert.version>1.5.0</jsonassert.version>
-        <assertj.version>3.21.0</assertj.version>
-
-        <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-
-        <glassfish.version>6.2.2</glassfish.version>
-        <arquillian-glassfish6.version>1.0.0.Alpha1</arquillian-glassfish6.version>
-        <jersey.version>3.0.3</jersey.version>
-
-        <payara.version>6.2021.1.Alpha1</payara.version>
-        <arquillian-payara.version>3.0.alpha1</arquillian-payara.version>
-
-        <wildfly.version>25.0.1.Final</wildfly.version>
-        <wildfly-maven-plugin.version>2.1.0.Final</wildfly-maven-plugin.version>
-        <wildfly-arquillian.version>5.0.0.Alpha1</wildfly-arquillian.version>
-        <wildfly-jar-maven-plugin.version>6.1.0.Final</wildfly-jar-maven-plugin.version>
-        <openshift-maven-plugin.version>1.5.1</openshift-maven-plugin.version>
-        <undertow-websockets-jsr.version>2.2.5.Final</undertow-websockets-jsr.version>
-        <resteasy.version>3.15.1.Final</resteasy.version>
-
-        <liberty.runtime.version>21.0.0.12-beta</liberty.runtime.version>
-        <derby.version>10.14.2.0</derby.version>
-        <liberty-maven-plugin.version>3.5</liberty-maven-plugin.version>
-        <arquillian-liberty-jakarta.version>2.0.1</arquillian-liberty-jakarta.version>
-
         <tomee.version>9.0.0-M3</tomee.version>
         <tomee-maven-plugin.version>8.0.8</tomee-maven-plugin.version>
 
-        <arquillian-weld-embedded.version>3.0.0.Final</arquillian-weld-embedded.version>
-        <weld.version>4.0.2.Final</weld.version>
-
-        <skip.unit.tests>true</skip.unit.tests>
-        <skip.integration.tests>true</skip.integration.tests>
-
     </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>jakarta.platform</groupId>
-                <artifactId>jakarta.jakartaee-api</artifactId>
-                <version>${jakartaee-api.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>${arquillian-bom.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>com.jayway.jsonpath</groupId>
-                <artifactId>json-path</artifactId>
-                <version>${json-path.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.jayway.jsonpath</groupId>
-                <artifactId>json-path-assert</artifactId>
-                <version>${json-path.version}</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -113,16 +48,7 @@
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.protocol</groupId>
-            <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
-            <scope>test</scope>
+            <version>${jakartaee-api.version}</version>
         </dependency>
     </dependencies>
     <build>
@@ -161,46 +87,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <skipTests>${skip.unit.tests}</skipTests>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>default-test</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/it/**</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${maven-failsafe-plugin.version}</version>
-                <configuration>
-                    <skipITs>${skip.integration.tests}</skipITs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>integration-test</id>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/it/**</include>
-                            </includes>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -227,10 +113,4 @@
             </build>
         </profile>
     </profiles>
-    <repositories>
-        <repository>
-            <id>jboss-maven2-release-repository</id>
-            <url>https://repository.jboss.org/maven2/</url>
-        </repository>
-    </repositories>
 </project>
