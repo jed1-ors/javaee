@@ -10,7 +10,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("student")
+@Path("/student")
 @Produces(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class StudentController {
@@ -18,8 +18,10 @@ public class StudentController {
     @Inject
     private StudentService studentService;
 
+    @Path("{id}")
     @GET
-    public Response getStudent(@PathParam("{id}") long id) {
+    public Response getStudent(@PathParam("id") long id) {
+        System.out.println("id ---------" + id);
         return Response.ok(this.studentService.getStudent(id)).build();
     }
 }
