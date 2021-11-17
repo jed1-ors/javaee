@@ -22,7 +22,10 @@ public class FlywayConfig {
     @PostConstruct
     public void init() {
         System.out.println("Starting to migrate the database schema with Flyway");
-        Flyway flyway = Flyway.configure().dataSource(dataSource).schemas("public").load();
+        Flyway flyway = Flyway.configure()
+                .dataSource("jdbc:postgresql://localhost:5432/javaee", "postgres", "postgres")
+                .schemas("public")
+                .load();
         flyway.migrate();
         System.out.println("Successfully applied latest schema changes");
     }
