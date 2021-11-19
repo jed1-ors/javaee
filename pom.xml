@@ -35,6 +35,8 @@
         <postgresql.version>42.3.1</postgresql.version>
 
         <flyway-core.version>8.0.2</flyway-core.version>
+
+        <docker.plugin.version>1.2.0</docker.plugin.version>
     </properties>
 
     <dependencies>
@@ -111,6 +113,28 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+            <!--mvn clean package docker:build -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+                <configuration>
+                    <imageName>javaee</imageName>
+                    <baseImage>tomee:latest</baseImage>
+                    <forceTags>true</forceTags>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <resources>
+                        <resource>
+                            <targetPath>/usr/local/tomee/webapps/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.war</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>
