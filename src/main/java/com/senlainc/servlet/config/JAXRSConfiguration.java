@@ -1,5 +1,8 @@
 package com.senlainc.servlet.config;
 
-//@ApplicationPath("resources")
-public class JAXRSConfiguration {
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
+
+@ApplicationPath("/rest")
+public class JAXRSConfiguration extends Application {
 }

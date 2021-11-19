@@ -13,9 +13,9 @@ public class AppConfig {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         final Student student = Student.builder()
-                .firstName("Test")
-                .lastName("Testov")
-                .middleName("Testovich")
+                .firstName("Test2")
+                .lastName("Testov2")
+                .middleName("Test2ovich")
                 .birthday(LocalDate.of(1991, 12, 10))
                 .build();
 
