@@ -21,7 +21,6 @@ public class StudentController {
     @Path("{id}")
     @GET
     public Response getStudent(@PathParam("id") Long id) {
-        System.out.println("id ---------" + id);
         return Response.ok(this.studentService.getStudent(id)).build();
     }
 }

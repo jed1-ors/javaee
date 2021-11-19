@@ -1,30 +1,25 @@
 package com.senlainc.servlet.config.db;
 
-import com.senlainc.servlet.annotation.Students;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
-import jakarta.enterprise.inject.Disposes;
-import jakarta.enterprise.inject.Produces;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import org.flywaydb.core.Flyway;
 
+@ApplicationScoped
 @Startup
 @Singleton
-//@TransactionManagement(TransactionManagementType.BEAN)
+@TransactionManagement(TransactionManagementType.BEAN)
 public class FlywayConfig {
 
-//    @Produces
-//    @PersistenceContext(unitName="defaultEntityManagerFactory")
-//    @Students
-//    EntityManagerFactory defaultEntityManagerFactory;
+    @Inject
+    private EntityManager entityManager;
 
-
-    private EntityManagerFactory emf;
-
-    //    @PostConstruct
+    @PostConstruct
     public void init() {
         System.out.println("Starting to migrate the database schema with Flyway");
         Flyway flyway = Flyway.configure()
@@ -34,20 +29,4 @@ public class FlywayConfig {
         flyway.migrate();
         System.out.println("Successfully applied latest schema changes");
     }
-
-    @PostConstruct
-    public void setupEntityManagerFactory() {
-        emf = Persistence.createEntityManagerFactory("default");
-    }
-
-    @Produces
-    @Students
-    public EntityManager start() {
-        return emf.createEntityManager();
-    }
-
-    public void close(@Disposes @Students EntityManager em) {
-        emf.close();
-    }
-
 }

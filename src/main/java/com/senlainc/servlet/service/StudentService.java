@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 public class StudentService {
 
     @Inject
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public Student getStudent(Long id) {
         return entityManager.find(Student.class, id);
