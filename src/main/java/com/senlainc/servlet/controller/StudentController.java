@@ -20,7 +20,7 @@ public class StudentController {
 
     @Path("{id}")
     @GET
-    public Response getStudent(@PathParam("id") Long id) {
+    public Response getStudent(@PathParam("id") long id) {
         return Response.ok(this.studentService.getStudent(id)).build();
     }
 }

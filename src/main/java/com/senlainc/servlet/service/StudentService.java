@@ -1,9 +1,9 @@
 package com.senlainc.servlet.service;
 
 import com.senlainc.servlet.entity.Student;
+import com.senlainc.servlet.repository.StudentRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
 @ApplicationScoped
@@ -11,9 +11,9 @@ import jakarta.transaction.Transactional;
 public class StudentService {
 
     @Inject
-    private EntityManager entityManager;
+    private StudentRepository studentRepository;
 
-    public Student getStudent(Long id) {
-        return entityManager.find(Student.class, id);
+    public Student getStudent(long id) {
+        return this.studentRepository.getStudent(id);
     }
 }
