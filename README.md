@@ -1,4 +1,4 @@
-Apache Tomee EE Plume, JAX-RS, JTA, JPA, JSP
+Apache Tomee EE Plume, JAX-RS, CDI, JTA, JPA, JSP
 
 create db javaee, postgresql
 
