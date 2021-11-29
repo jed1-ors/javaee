@@ -10,10 +10,6 @@
 <title>Students</title>
 </head>
 <body>
-
-    <div> student - ${students} </div>
-    <div> students - <%= request.getParameter("students") %> </div>
-
     <div align="center">
         <table border="1" cellpadding="5">
             <caption><h2>Students</h2></caption>
