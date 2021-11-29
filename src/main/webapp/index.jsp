@@ -10,18 +10,28 @@
 <title>Students</title>
 </head>
 <body>
+
+    <div> student - ${students} </div>
+    <div> students - <%= request.getParameter("students") %> </div>
+
     <div align="center">
         <table border="1" cellpadding="5">
             <caption><h2>Students</h2></caption>
             <tr>
                 <th>ID</th>
                 <th>First Name</th>
+                <th>Last Name</th>
+                <th>Middle Name</th>
+                <th>Birthday</th>
             </tr>
 
-            <c:forEach var="student" items="<%= request.getParameter("students") %>">
+            <c:forEach var="student" items="${students}">
                 <tr>
                     <td><c:out value="${student.id}" /></td>
                     <td><c:out value="${student.firstName}" /></td>
+                    <td><c:out value="${student.lastName}" /></td>
+                    <td><c:out value="${student.middleName}" /></td>
+                    <td><c:out value="${student.birthday}" /></td>
                 </tr>
             </c:forEach>
         </table>
